@@ -3,7 +3,7 @@
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Contact Lavessa</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,15 +13,89 @@
     <!-- Custom Cursor -->
     <div class="custom-cursor" id="custom-cursor"></div>
 
-    <nav>
-        <img src="logo.png" class="logo">
+    <!-- NEW NAVBAR -->
+    <nav class="new-navbar">
+      <!-- Left Section: Menu & Search -->
+      <div class="nav-left">
+        <button class="nav-icon menu-toggle" id="menuToggle">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <button class="nav-icon search-toggle" id="searchToggle">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
 
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+      <!-- Center: Logo -->
+      <div class="nav-center">
+        <a href="index.html">
+          <img src="logo.png" class="logo">
+        </a>
+      </div>
+
+      <!-- Right Section: Profile & Cart -->
+      <div class="nav-right">
+        <button class="nav-icon profile-toggle" id="profileToggle">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <button class="nav-icon" id="cartToggle" onclick="openCart()">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+      </div>
     </nav>
+
+    <!-- SIDEBAR MENU -->
+    <div class="sidebar-menu" id="sidebarMenu">
+      <div class="sidebar-header">
+        <h2>Menu</h2>
+        <button class="close-btn" id="closeSidebar">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <h3>Categories</h3>
+          <a href="floral.html" class="sidebar-link sub-link">Floral Printed Kurtis</a>
+          <a href="peplum.html" class="sidebar-link sub-link">Peplum Kurtis</a>
+          <a href="kurta sets.html" class="sidebar-link sub-link">Kurta Sets</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH PANEL -->
+    <div class="search-panel" id="searchPanel">
+      <div class="search-header">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
+        <button class="search-close" id="searchClose">
+          <i class="fa-solid fa-times"></i>
+        </button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions">
+        <!-- Suggestions will populate here -->
+      </div>
+    </div>
+
+    <!-- PROFILE MODAL -->
+    <div class="profile-modal" id="profileModal">
+      <div class="modal-content">
+        <button class="modal-close" id="profileClose">
+          <i class="fa-solid fa-times"></i>
+        </button>
+        <h2>Sign In</h2>
+        <form class="profile-form" id="profileForm">
+          <input type="text" placeholder="Full Name" id="userName" required>
+          <input type="email" placeholder="Email (optional)" id="userEmail">
+          <input type="tel" placeholder="Phone Number (optional)" id="userPhone">
+          <div class="error-message" id="loginError"></div>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div class="or-divider">Or continue as guest</div>
+        <button class="guest-btn" onclick="closeProfileModal()">Browse as Guest</button>
+      </div>
+    </div>
+
+    <!-- Overlay for modals -->
+    <div class="modal-overlay" id="modalOverlay"></div>
 
     <section class="contact-page">
 
@@ -34,23 +108,223 @@
     </section>
 
     <script>
-        // Custom Cursor Logic
-        const cursor = document.getElementById('custom-cursor');
-        const interactiveElements = document.querySelectorAll('a, button, .card');
+      // Sample products for search suggestions
+      const allProducts = [
+        { name: "Floral Whisper Suit", price: "Rs. 1,699", image: "Floral1.jpeg" },
+        { name: "Emerald Green Peplum", price: "Rs. 1,599", image: "peplum green.jpg" },
+        { name: "Regal Purple Set", price: "Rs. 1,999", image: "peplum purple.jpg" },
+        { name: "Azure Blue Printed", price: "Rs. 1,299", image: "printed blue.jpg" },
+        { name: "Crimson Red Wear", price: "Rs. 1,299", image: "printed red.jpg" },
+        { name: "Pristine White Set", price: "Rs. 2,499", image: "white (1).jpg" },
+        { name: "Embroidered Black", price: "Rs. 1,899", image: "peplum black.jpg" }
+      ];
 
+      // DOM Elements
+      const menuToggle = document.getElementById('menuToggle');
+      const sidebarMenu = document.getElementById('sidebarMenu');
+      const closeSidebar = document.getElementById('closeSidebar');
+      const searchToggle = document.getElementById('searchToggle');
+      const searchPanel = document.getElementById('searchPanel');
+      const searchClose = document.getElementById('searchClose');
+      const searchInput = document.getElementById('searchInput');
+      const searchSuggestions = document.getElementById('searchSuggestions');
+      const profileToggle = document.getElementById('profileToggle');
+      const profileModal = document.getElementById('profileModal');
+      const profileClose = document.getElementById('profileClose');
+      const modalOverlay = document.getElementById('modalOverlay');
+
+      // Sidebar Menu Toggle
+      menuToggle.addEventListener('click', () => {
+        sidebarMenu.classList.add('active');
+        modalOverlay.classList.add('active');
+      });
+
+      closeSidebar.addEventListener('click', () => {
+        sidebarMenu.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      });
+
+      // Close sidebar when clicking on a link
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          sidebarMenu.classList.remove('active');
+          modalOverlay.classList.remove('active');
+        });
+      });
+
+      // Search Panel Toggle
+      searchToggle.addEventListener('click', () => {
+        searchPanel.classList.add('active');
+        modalOverlay.classList.add('active');
+        searchInput.focus();
+        if (searchSuggestions.children.length === 0) {
+          loadSearchSuggestions();
+        }
+      });
+
+      searchClose.addEventListener('click', () => {
+        searchPanel.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      });
+
+      // Load search suggestions
+      function loadSearchSuggestions(query = '') {
+        searchSuggestions.innerHTML = '';
+        let products = allProducts;
+
+        if (query.trim() !== '') {
+          products = allProducts.filter(p =>
+            p.name.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+
+        if (products.length === 0) {
+          searchSuggestions.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No products found</p>';
+          return;
+        }
+
+        products.forEach(product => {
+          const card = document.createElement('div');
+          card.className = 'search-product-card';
+          card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="search-product-img">
+            <div class="search-product-info">
+              <h4>${product.name}</h4>
+              <p>${product.price}</p>
+            </div>
+          `;
+          card.style.cursor = 'pointer';
+          card.addEventListener('click', () => {
+            searchPanel.classList.remove('active');
+            modalOverlay.classList.remove('active');
+            alert(`Added to cart: ${product.name}`);
+          });
+          searchSuggestions.appendChild(card);
+        });
+      }
+
+      // Search input listener
+      searchInput.addEventListener('input', (e) => {
+        loadSearchSuggestions(e.target.value);
+      });
+
+      // Profile Modal Toggle
+      profileToggle.addEventListener('click', () => {
+        profileModal.classList.add('active');
+        modalOverlay.classList.add('active');
+      });
+
+      profileClose.addEventListener('click', () => {
+        profileModal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      });
+
+      function closeProfileModal() {
+        profileModal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      }
+
+      // Profile form submission
+      const profileForm = document.querySelector('.profile-form');
+      profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('userName').value.trim();
+        const email = document.getElementById('userEmail').value.trim();
+        const phone = document.getElementById('userPhone').value.trim();
+        const errorMsg = document.getElementById('loginError');
+
+        // Reset error message
+        errorMsg.textContent = '';
+
+        // Validate name
+        if (!name) {
+          errorMsg.textContent = 'Please enter your name.';
+          return;
+        }
+
+        // Check if either email or phone is filled
+        if (!email && !phone) {
+          errorMsg.textContent = 'Please enter Email or Phone Number.';
+          return;
+        }
+
+        // Login successful
+        localStorage.setItem('userProfile', JSON.stringify({ name, email, phone }));
+        alert(`Welcome ${name}! Login successful 💜`);
+        closeProfileModal();
+        profileForm.reset();
+      });
+
+      // Close modals when clicking overlay
+      modalOverlay.addEventListener('click', () => {
+        sidebarMenu.classList.remove('active');
+        searchPanel.classList.remove('active');
+        profileModal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      });
+
+      // Cart functionality
+      function openCart() {
+        alert("Cart page coming soon 🛍");
+      }
+
+      function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+      }
+
+      function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cart-count").innerText = cart.length;
+      }
+
+      updateCartCount();
+
+      // Prevent scroll when modal is open
+      function toggleBodyScroll(disable) {
+        if (disable) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto';
+        }
+      }
+
+      // Update scroll lock when modals change
+      const observer = new MutationObserver(() => {
+        const anyModalActive = sidebarMenu.classList.contains('active') ||
+          searchPanel.classList.contains('active') ||
+          profileModal.classList.contains('active');
+        toggleBodyScroll(anyModalActive);
+      });
+
+      observer.observe(sidebarMenu, { attributes: true });
+      observer.observe(searchPanel, { attributes: true });
+      observer.observe(profileModal, { attributes: true });
+    </script>
+
+    <script>
+      // Custom Cursor Logic
+      const cursor = document.getElementById('custom-cursor');
+      const interactiveElements = document.querySelectorAll('a, button, .card, img[onclick]');
+
+      if (cursor) {
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
         });
 
         interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-            });
+          el.addEventListener('mouseenter', () => {
+            cursor.classList.add('active');
+          });
+          el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+          });
         });
+      }
     </script>
 
 </body>

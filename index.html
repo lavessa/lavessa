@@ -71,9 +71,8 @@
     </div>
     <div class="sidebar-content">
       <a href="index.html" class="sidebar-link">Shop All</a>
-      <a href="collections.html" class="sidebar-link">Categories</a>
       <div class="sidebar-section">
-        <h3>Category</h3>
+        <h3>Categories</h3>
         <a href="floral.html" class="sidebar-link sub-link">Floral Printed Kurtis</a>
         <a href="peplum.html" class="sidebar-link sub-link">Peplum Kurtis</a>
         <a href="sets.html" class="sidebar-link sub-link">Kurta Sets</a>
@@ -102,9 +101,11 @@
         <i class="fa-solid fa-times"></i>
       </button>
       <h2>Sign In</h2>
-      <form class="profile-form">
-        <input type="text" placeholder="Full Name" required>
-        <input type="email" placeholder="Email or Phone" required>
+      <form class="profile-form" id="profileForm">
+        <input type="text" placeholder="Full Name" id="userName" required>
+        <input type="email" placeholder="Email (optional)" id="userEmail">
+        <input type="tel" placeholder="Phone Number (optional)" id="userPhone">
+        <div class="error-message" id="loginError"></div>
         <button type="submit" class="login-btn">Login</button>
       </form>
       <div class="or-divider">Or continue as guest</div>
@@ -423,7 +424,29 @@
     const profileForm = document.querySelector('.profile-form');
     profileForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Login successful! Welcome to Lavessa 💜');
+      const name = document.getElementById('userName').value.trim();
+      const email = document.getElementById('userEmail').value.trim();
+      const phone = document.getElementById('userPhone').value.trim();
+      const errorMsg = document.getElementById('loginError');
+
+      // Reset error message
+      errorMsg.textContent = '';
+
+      // Validate name
+      if (!name) {
+        errorMsg.textContent = 'Please enter your name.';
+        return;
+      }
+
+      // Check if either email or phone is filled
+      if (!email && !phone) {
+        errorMsg.textContent = 'Please enter Email or Phone Number.';
+        return;
+      }
+
+      // Login successful
+      localStorage.setItem('userProfile', JSON.stringify({ name, email, phone }));
+      alert(`Welcome ${name}! Login successful 💜`);
       closeProfileModal();
       profileForm.reset();
     });

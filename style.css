@@ -9,6 +9,8 @@ body {
   background: linear-gradient(180deg, #f9f5fa, #f0eaf4, #fbfafc);
   color: #33263d;
   cursor: none;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Custom Cursor */
@@ -59,8 +61,10 @@ body {
 
 .nav-center img {
   height: 50px;
-  border-radius: 24px;
+  border-radius: 50%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .nav-icon {
@@ -383,6 +387,21 @@ body {
   border-color: #603275;
   background: #faf8fb;
   box-shadow: 0 0 0 3px rgba(96, 50, 117, 0.1);
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-weight: 500;
+  padding: 8px 12px;
+  background: rgba(217, 83, 79, 0.1);
+  border-radius: 6px;
+  display: none;
+}
+
+.error-message:not(:empty) {
+  display: block;
 }
 
 .login-btn {
@@ -1631,15 +1650,20 @@ body {
   body {
     cursor: auto;
     padding-bottom: 0 !important;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   /* New Navbar stays at top */
   .new-navbar {
     padding: 10px 15px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .nav-center img {
     height: 45px;
+    border-radius: 50%;
   }
 
   .nav-icon {
@@ -1648,6 +1672,19 @@ body {
 
   .search-panel {
     max-width: 100%;
+    width: 100% !important;
+    right: 0 !important;
+  }
+
+  .sidebar-menu {
+    width: 85%;
+    max-width: 280px;
+  }
+
+  /* Prevent all elements from exceeding viewport */
+  section {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .logo {
@@ -1664,11 +1701,14 @@ body {
     padding: 40px 20px 60px;
     text-align: center;
     min-height: auto;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .hero-content {
     flex-direction: column;
     gap: 40px;
+    max-width: 100%;
   }
 
   .hero-text {
@@ -1721,6 +1761,8 @@ body {
   /* Categories Section */
   .categories-section {
     padding: 60px 20px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .section-title h2 {
@@ -1730,6 +1772,8 @@ body {
   .category-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .category-card {
@@ -1741,11 +1785,13 @@ body {
     grid-template-columns: 1fr;
     /* Stack columns */
     padding: 0 20px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
-  /* Product Carousel Section */
   .product-carousel-section {
-    padding: 40px 20px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .carousel-header {
@@ -1767,8 +1813,21 @@ body {
 
   .prev-btn,
   .next-btn {
-    display: flex;
-    /* Show arrows for sliding on mobile */
+    display: none !important;
+    /* Hide arrows on mobile for cleaner swipe UI */
+  }
+
+  .carousel-container {
+    justify-content: center;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .carousel-track-container {
+    -webkit-overflow-scrolling: touch;
+    /* Smooth momentum scrolling on iOS */
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .carousel-track {
