@@ -1725,9 +1725,8 @@ body {
   }
 
   .slide-img-wrapper {
-    aspect-ratio: auto;
-    /* Let it scale naturally */
-    height: 400px;
+    aspect-ratio: 3 / 4;
+    height: 250px;
   }
 
   /* About Brand Section */
