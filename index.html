@@ -573,11 +573,11 @@
     const dots = Array.from(navDots.children);
 
     const updateSliderPosition = () => {
+      // Ensure currentSlideIndex is within bounds FIRST
+      currentSlideIndex = Math.max(0, Math.min(currentSlideIndex, maxIndex));
+      
       const amountToMove = -(currentSlideIndex * slideShiftPercentage);
       track.style.transform = 'translateX(' + amountToMove + '%)';
-
-      // Ensure currentSlideIndex is within bounds
-      currentSlideIndex = Math.max(0, Math.min(currentSlideIndex, maxIndex));
 
       // Update dots (with bounds checking)
       dots.forEach(dot => dot.classList.remove('active'));
