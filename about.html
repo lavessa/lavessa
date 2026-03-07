@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Lavessa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <nav>
+        <img src="logo.png" class="logo">
+
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="about-page">
+
+        <h1>About Lavessa</h1>
+
+        <p>
+            Lavessa is a modern boutique brand focused on elegant everyday kurtis.
+            Our collections are designed for college students and working women
+            who love comfort, floral prints, and affordable fashion.
+        </p>
+
+        <p>
+            Each piece is created with simplicity, grace, and soft feminine aesthetics.
+            We believe fashion should feel beautiful and effortless.
+        </p>
+
+    </section>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        const interactiveElements = document.querySelectorAll('a, button, .card');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

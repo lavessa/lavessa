@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Lavessa Fashion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- Logo Intro Screen -->
+  <div class="logo-intro" id="logoIntro">
+    <img src="logo.png" class="intro-logo" id="introLogo">
+  </div>
+  <script>
+    // Ensure the intro animation only plays once per session
+    if (sessionStorage.getItem('lavessaIntroPlayed')) {
+      document.getElementById('logoIntro').style.display = 'none';
+    } else {
+      sessionStorage.setItem('lavessaIntroPlayed', 'true');
+    }
+  </script>
+
+
+  <!-- NAVBAR -->
+  <nav>
+
+    <img src="logo.png" class="logo">
+
+    <ul class="menu">
+
+      <li>
+        <a href="index.html">
+          <i class="fa-solid fa-house"></i>
+        </a>
+      </li>
+
+      <li class="dropdown">
+        <a href="#">
+          <i class="fa-solid fa-layer-group"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="floral.html">Floral Printed Kurtis</a></li>
+          <li><a href="peplum.html">Peplum Kurtis</a></li>
+          <li><a href="sets.html">Kurta Sets</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick="toggleSearch()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" onclick="openWishlist()">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+      </li>
+
+      <li>
+        <a href="#" onclick="openCart()">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span id="cart-count">0</span>
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div id="searchBox" class="search-box">
+    <input type="text" placeholder="Search..." id="searchInput">
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Elegant Everyday Kurtis</h1>
+        <p>Affordable styles for college & office wear. Crafted with comfort and elegance.</p>
+        <br>
+        <a href="collections.html" class="hero-btn">Shop Collection</a>
+      </div>
+
+      <div class="hero-gallery">
+        <img src="red.jpeg" class="hero-img img1">
+        <img src="blue.jpeg" class="hero-img img2">
+        <img src="peplum blue.jpg" class="hero-img img3">
+      </div>
+    </div>
+
+  </section>
+  <!-- HIGHLIGHTED CATEGORIES -->
+  <section class="categories-section">
+    <div class="section-title">
+      <h2>Shop by Category</h2>
+      <p>Find the perfect style for any occasion</p>
+    </div>
+    <div class="category-grid">
+      <a href="floral.html" class="category-card">
+        <img src="red.jpeg" alt="Floral Kurtis">
+        <div class="category-info">
+          <h3>Floral Prints</h3>
+          <span class="explore-btn">Explore</span>
+        </div>
+      </a>
+      <a href="peplum.html" class="category-card">
+        <img src="peplum black.jpg" alt="Peplum Kurtis">
+        <div class="category-info">
+          <h3>Peplum Styles</h3>
+          <span class="explore-btn">Explore</span>
+        </div>
+      </a>
+      <a href="sets.html" class="category-card">
+        <img src="multicolor.jpg" alt="Kurta Sets">
+        <div class="category-info">
+          <h3>Kurta Sets</h3>
+          <span class="explore-btn">Explore</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PRODUCT CAROUSEL -->
+  <section class="product-carousel-section">
+    <div class="carousel-header">
+      <h2>Featured Collections</h2>
+      <a href="collections.html" class="view-all-btn">View All</a>
+    </div>
+
+    <div class="carousel-container">
+      <button class="carousel-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+
+      <div class="carousel-track-container">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- Slide 1 -->
+          <div class="carousel-slide">
+            <a href="floral.html">
+              <div class="slide-img-wrapper">
+                <img src="Floral1.jpeg" alt="Floral Kurti">
+                <span class="badge">#Trending</span>
+              </div>
+              <div class="slide-info">
+                <h4>Floral Whisper Cotton Suit</h4>
+                <p>From <span>Rs. 1,699.00</span></p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-slide">
+            <a href="peplum.html">
+              <div class="slide-img-wrapper">
+                <img src="peplum black.jpg" alt="Peplum Black">
+                <span class="badge new-badge">NEW</span>
+              </div>
+              <div class="slide-info">
+                <h4>Embroidered Black Peplum</h4>
+                <p>From <span>Rs. 1,899.00</span></p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-slide">
+            <a href="peplum.html">
+              <div class="slide-img-wrapper">
+                <img src="peplum green.jpg" alt="Peplum Green">
+              </div>
+              <div class="slide-info">
+                <h4>Emerald Green Peplum Top</h4>
+                <p>From <span>Rs. 1,599.00</span></p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="carousel-slide">
+            <a href="peplum.html">
+              <div class="slide-img-wrapper">
+                <img src="peplum purple.jpg" alt="Peplum Purple">
+              </div>
+              <div class="slide-info">
+                <h4>Regal Purple Peplum Set</h4>
+                <p>From <span>Rs. 1,999.00</span></p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="carousel-slide">
+            <a href="product1.html">
+              <div class="slide-img-wrapper">
+                <img src="printed blue.jpg" alt="Printed Blue">
+                <span class="badge">Classic</span>
+              </div>
+              <div class="slide-info">
+                <h4>Azure Blue Printed Kurti</h4>
+                <p>From <span>Rs. 1,299.00</span></p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="carousel-slide">
+            <a href="product1.html">
+              <div class="slide-img-wrapper">
+                <img src="printed red.jpg" alt="Printed Red">
+              </div>
+              <div class="slide-info">
+                <h4>Crimson Red Daily Wear</h4>
+                <p>From <span>Rs. 1,299.00</span></p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Slide 7 -->
+          <div class="carousel-slide">
+            <a href="sets.html">
+              <div class="slide-img-wrapper">
+                <img src="white (1).jpg" alt="White Lifestyle">
+                <span class="badge">Premium</span>
+              </div>
+              <div class="slide-info">
+                <h4>Pristine White Kurta Set</h4>
+                <p>From <span>Rs. 2,499.00</span></p>
+              </div>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carousel-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="carousel-nav" id="carouselNav">
+      <!-- Dots injected by JS -->
+    </div>
+  </section>
+
+  <!-- ABOUT THE BRAND -->
+  <section class="about-brand">
+    <div class="about-content">
+      <h2>The Lavessa Story</h2>
+      <p>At Lavessa Fashion, we believe that everyday wear should never be boring. We craft beautiful, affordable kurtis
+        that blend traditional elegance with modern comfort, perfect for the modern woman on the go.</p>
+    </div>
+    <div class="about-image">
+      <img src="white (1).jpg" alt="Lavessa Lifestyle">
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Lavessa Fashion</p>
+  </footer>
+
+  <script>
+    window.addEventListener("scroll", function () {
+
+      const fullLogo = document.querySelector(".logo-full");
+      const miniLogo = document.querySelector(".logo-mini");
+
+      if (window.scrollY > 80) {
+        fullLogo.style.opacity = "0";
+        miniLogo.style.opacity = "1";
+        miniLogo.style.transform = "translateY(0)";
+      } else {
+        fullLogo.style.opacity = "1";
+        miniLogo.style.opacity = "0";
+        miniLogo.style.transform = "translateY(-10px)";
+      }
+
+    });
+
+  </script>
+  <script>
+
+    function toggleSearch() {
+      const box = document.getElementById("searchBox");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    function openWishlist() {
+      alert("Wishlist coming soon 💜");
+    }
+
+    function openCart() {
+      alert("Cart page coming soon 🛍");
+    }
+
+    function addToCart(product) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("cart-count").innerText = cart.length;
+    }
+
+    updateCartCount();
+
+  </script>
+  <script>
+
+    function toggleSearch() {
+      const box = document.getElementById("searchBox");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+    }
+
+    document.getElementById("searchInput").addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        const value = this.value.trim();
+        if (value !== "") {
+          window.location.href = "search.html?q=" + encodeURIComponent(value);
+        }
+      }
+    });
+
+  </script>
+  <script>
+    const cards = document.querySelectorAll(".card");
+
+    window.addEventListener("scroll", () => {
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (cardTop < windowHeight - 100) {
+          card.classList.add("show");
+        }
+      });
+    });
+
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    const interactiveElements = document.querySelectorAll('a, button, .card');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('active');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('active');
+      });
+    });
+
+    // Interactive Product Carousel Logic
+    const track = document.getElementById('carouselTrack');
+    const slides = Array.from(track.children);
+    const nextButton = document.getElementById('nextBtn');
+    const prevButton = document.getElementById('prevBtn');
+    const navDots = document.getElementById('carouselNav');
+
+    // Display 4 slides on desktop, 1 on mobile
+    const isMobile = window.innerWidth <= 768;
+    const slidesTovisible = isMobile ? 1 : 4;
+    const slideShiftPercentage = isMobile ? 100 : 25;
+
+    let currentSlideIndex = 0;
+    const maxIndex = Math.max(0, slides.length - slidesTovisible);
+
+    // Create Navigation Dots
+    for (let i = 0; i <= maxIndex; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-dot');
+      if (i === 0) dot.classList.add('active');
+      navDots.appendChild(dot);
+    }
+    const dots = Array.from(navDots.children);
+
+    const updateSliderPosition = () => {
+      const amountToMove = -(currentSlideIndex * slideShiftPercentage);
+      track.style.transform = 'translateX(' + amountToMove + '%)';
+
+      // Update dots
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[currentSlideIndex].classList.add('active');
+
+      // Disable/Enable Buttons
+      prevButton.style.opacity = currentSlideIndex === 0 ? '0.5' : '1';
+      prevButton.style.cursor = currentSlideIndex === 0 ? 'not-allowed' : 'pointer';
+
+      nextButton.style.opacity = currentSlideIndex === maxIndex ? '0.5' : '1';
+      nextButton.style.cursor = currentSlideIndex === maxIndex ? 'not-allowed' : 'pointer';
+    };
+
+    nextButton.addEventListener('click', () => {
+      if (currentSlideIndex < maxIndex) {
+        currentSlideIndex++;
+        updateSliderPosition();
+      }
+    });
+
+    prevButton.addEventListener('click', () => {
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        updateSliderPosition();
+      }
+    });
+
+    // Dot clicks
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlideIndex = index;
+        updateSliderPosition();
+      });
+    });
+
+    // Touch Swipe Logic for Mobile Carousel
+    let startX = 0;
+    let isDragging = false;
+
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+
+      if (diffX > 50 && currentSlideIndex < maxIndex) {
+        // swipe left -> next
+        currentSlideIndex++;
+        updateSliderPosition();
+      } else if (diffX < -50 && currentSlideIndex > 0) {
+        // swipe right -> prev
+        currentSlideIndex--;
+        updateSliderPosition();
+      }
+    });
+
+    // Initialize button states
+    updateSliderPosition();
+
+  </script>
+
+</body>
+
+</html>

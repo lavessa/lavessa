@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Peplum Kurtis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <nav>
+
+    <img src="logo.png" class="logo">
+
+    <ul class="menu">
+      <li class="dropdown">
+        <a href="#">Category ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="floral.html">Floral Printed Kurtis</a></li>
+          <li><a href="peplum.html">Peplum Kurtis</a></li>
+          <li><a href="kurta sets.html">Kurta Sets</a></li>
+        </ul>
+      </li>
+
+      <li><a href="index.html">Home</a></li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+
+  </nav>
+
+  <section class="category-page">
+    <h1>Peplum Kurtis</h1>
+
+    <div class="card-container">
+
+      <div class="card">
+        <h3>Blue Peplum Kurti</h3>
+        <p>₹999</p>
+        <button class="order-btn" onclick="orderNow('Blue Peplum Kurti')">
+          Order on WhatsApp
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Black Peplum Kurti</h3>
+        <p>₹1099</p>
+        <button class="order-btn" onclick="orderNow('Black Peplum Kurti')">
+          Order on WhatsApp
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Pink Peplum Kurti</h3>
+        <p>₹1199</p>
+        <button class="order-btn" onclick="orderNow('Pink Peplum Kurti')">
+          Order on WhatsApp
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Purple Peplum Kurti</h3>
+        <p>₹1299</p>
+        <button class="order-btn" onclick="orderNow('Purple Peplum Kurti')">
+          Order on WhatsApp
+        </button>
+      </div>
+
+      <div class="card">
+        <h3>Green Peplum Kurti</h3>
+        <p>₹1399</p>
+        <button class="order-btn" onclick="orderNow('Green Peplum Kurti')">
+          Order on WhatsApp
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    function orderNow(product) {
+      let number = "918088214552";
+      let message = "Hi I want to order " + product;
+      let url = "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
+    }
+
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    const interactiveElements = document.querySelectorAll('a, button, .card');
+
+    if (cursor) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('active');
+        });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

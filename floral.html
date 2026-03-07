@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Floral Printed Kurtis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <nav>
+
+        <img src="logo.png" class="logo">
+
+        <ul class="menu">
+            <li class="dropdown">
+                <a href="#">Category ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="floral.html">Floral Printed Kurtis</a></li>
+                    <li><a href="peplum.html">Peplum Kurtis</a></li>
+                    <li><a href="kurta sets.html">Kurta Sets</a></li>
+                </ul>
+            </li>
+
+            <li><a href="index.html">Home</a></li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+
+    </nav>
+
+    <section class="category-page">
+        <h1>Floral Printed Kurtis</h1>
+
+        <div class="card-container">
+
+            <div class="card">
+                <h3>Lavender Floral Kurti</h3>
+                <p>₹899</p>
+                <a href="https://wa.me/918088214552?text=Hi%20I%20want%20to%20order%20Blue%20Peplum%20Kurti"
+                    class="order-btn">
+                    Order on WhatsApp
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>Pink Floral Kurti</h3>
+                <p>₹999</p>
+                <a href="https://wa.me/918088214552?text=Hi%20I%20want%20to%20order%20Blue%20Peplum%20Kurti"
+                    class="order-btn">
+                    Order on WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </section>
+    </section>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        const interactiveElements = document.querySelectorAll('a, button, .card');
+
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                });
+            });
+        }
+    </script>
+
+</body>
+
+</html>

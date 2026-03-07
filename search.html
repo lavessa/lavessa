@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Search Results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <nav>
+    <img src="logo.png" class="logo">
+  </nav>
+
+  <section class="products">
+    <h2>Search Results</h2>
+
+    <div id="results" class="card-container"></div>
+
+    <p id="noResults" style="display:none; text-align:center; margin-top:40px;">
+      No products found 💜
+    </p>
+
+  </section>
+
+  <script>
+
+    const allProducts = [
+      { name: "Floral Kurti Top", image: "red.jpeg", link: "product1.html" },
+      { name: "Black Printed Top", image: "black front.jpeg", link: "product2.html" },
+      { name: "Blue Peplum Kurti", image: "peplum blue.jpg", link: "peplum.html" },
+      { name: "Red Kurta Set", image: "red set.jpg", link: "sets.html" }
+    ];
+
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q")?.toLowerCase();
+
+    const resultsContainer = document.getElementById("results");
+    const noResults = document.getElementById("noResults");
+
+    let matches = allProducts.filter(product =>
+      product.name.toLowerCase().includes(query)
+    );
+
+    if (matches.length === 0) {
+      noResults.style.display = "block";
+    } else {
+      matches.forEach(product => {
+        resultsContainer.innerHTML += `
+      <a href="${product.link}" class="product-link">
+        <div class="card fade-card">
+          <img src="${product.image}">
+          <h3>${product.name}</h3>
+        </div>
+      </a>
+    `;
+      });
+    }
+
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+
+    // Create a mutation observer to attach event listeners to newly added elements
+    const attachCursorEvents = () => {
+      const interactiveElements = document.querySelectorAll('a, button, .card');
+      interactiveElements.forEach(el => {
+        // Remove to prevent duplicate event listeners
+        el.removeEventListener('mouseenter', onMouseEnter);
+        el.removeEventListener('mouseleave', onMouseLeave);
+        el.addEventListener('mouseenter', onMouseEnter);
+        el.addEventListener('mouseleave', onMouseLeave);
+      });
+    };
+
+    const onMouseEnter = () => cursor.classList.add('active');
+    const onMouseLeave = () => cursor.classList.remove('active');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    attachCursorEvents();
+
+    // Re-attach if new elements are added
+    const observer = new MutationObserver(attachCursorEvents);
+    observer.observe(resultsContainer, { childList: true });
+
+  </script>
+
+</body>
+
+</html>

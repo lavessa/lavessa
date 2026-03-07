@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Black Printed Top</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <nav>
+    <img src="logo.png" class="logo">
+  </nav>
+
+  <div class="product-page">
+
+    <!-- IMAGE AREA -->
+    <div>
+      <img src="black front.jpeg" id="mainImage" class="product-img">
+
+      <div class="colors">
+        <img src="black front.jpeg" onclick="changeImage('black front.jpeg')">
+        <img src="black back.jpeg" onclick="changeImage('black back.jpeg')">
+      </div>
+    </div>
+
+    <!-- DETAILS AREA -->
+    <div>
+      <h1>Black Printed Top</h1>
+      <p>Stylish black kurti with elegant prints perfect for everyday wear.</p>
+
+      <h2>₹999</h2>
+
+      <h3>Select Size</h3>
+      <div class="sizes">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+      </div>
+
+      <button onclick="addToCart('Black Printed Top')">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function changeImage(image) {
+      document.getElementById("mainImage").src = image;
+    }
+
+    // Custom Cursor Logic
+    const cursor = document.getElementById('custom-cursor');
+    const interactiveElements = document.querySelectorAll('a, button, .card, img[onclick]');
+
+    if (cursor) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove('active');
+        });
+      });
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Collections</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+
+    <nav>
+        <img src="logo.png" class="logo">
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <section class="category-page">
+        <h1>Our Collections</h1>
+
+        <div class="card-container">
+
+            <a href="floral.html" class="product-link">
+                <div class="card">
+                    <img src="floral1.jpeg">
+                    <h3>Floral Printed Kurtis</h3>
+                </div>
+            </a>
+
+            <a href="peplum.html" class="product-link">
+                <div class="card">
+                    <img src="peplum blue.jpeg">
+                    <h3>Peplum Kurtis</h3>
+                </div>
+            </a>
+
+            <a href="kurta sets.html" class="product-link">
+                <div class="card">
+                    <img src="red set.jpeg">
+                    <h3>Kurta Sets</h3>
+                </div>
+            </a>
+
+        </div>
+    </section>
+    </div>
+    </section>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        const interactiveElements = document.querySelectorAll('a, button, .card');
+
+        if (cursor) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                });
+            });
+        }
+    </script>
+
+</body>
+
+</html>
