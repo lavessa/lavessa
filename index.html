@@ -576,9 +576,14 @@
       const amountToMove = -(currentSlideIndex * slideShiftPercentage);
       track.style.transform = 'translateX(' + amountToMove + '%)';
 
-      // Update dots
+      // Ensure currentSlideIndex is within bounds
+      currentSlideIndex = Math.max(0, Math.min(currentSlideIndex, maxIndex));
+
+      // Update dots (with bounds checking)
       dots.forEach(dot => dot.classList.remove('active'));
-      dots[currentSlideIndex].classList.add('active');
+      if (currentSlideIndex < dots.length) {
+        dots[currentSlideIndex].classList.add('active');
+      }
 
       // Disable/Enable Buttons
       prevButton.style.opacity = currentSlideIndex === 0 ? '0.5' : '1';
