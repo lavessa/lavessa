@@ -215,20 +215,28 @@
     });
 
     // Search Panel Toggle
-    searchToggle.addEventListener('click', () => {
+    function openSearch() {
       searchPanel.classList.add('active');
       modalOverlay.classList.add('active');
       searchInput.focus();
       
       // Load default products on open
-      renderSearchResults(allProducts);
-      document.getElementById('searchResults').classList.add('grid');
-    });
+      setTimeout(() => {
+        renderSearchResults(allProducts);
+        const resultsContainer = document.getElementById('searchResults');
+        if (resultsContainer) resultsContainer.classList.add('grid');
+      }, 100);
+    }
 
-    searchClose.addEventListener('click', () => {
+    function closeSearch() {
       searchPanel.classList.remove('active');
       modalOverlay.classList.remove('active');
-    });
+      searchInput.value = '';
+      renderSearchResults(allProducts);
+    }
+
+    searchToggle.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
 
     // Search input listener with live filtering
     searchInput.addEventListener('input', (e) => {
@@ -251,21 +259,20 @@
       loadSearchSuggestions(e.target.value);
     });
 
-    // Profile Modal Toggle
-    profileToggle.addEventListener('click', () => {
+    // Profile Modal Functions
+    function openProfileModal() {
       profileModal.classList.add('active');
       modalOverlay.classList.add('active');
-    });
-
-    profileClose.addEventListener('click', () => {
-      profileModal.classList.remove('active');
-      modalOverlay.classList.remove('active');
-    });
+    }
 
     function closeProfileModal() {
       profileModal.classList.remove('active');
       modalOverlay.classList.remove('active');
     }
+
+    // Profile Toggle
+    profileToggle.addEventListener('click', openProfileModal);
+    profileClose.addEventListener('click', closeProfileModal);
 
     // Profile form submission
     const profileForm = document.querySelector('.profile-form');
@@ -298,12 +305,14 @@
       profileForm.reset();
     });
 
-    // Close modals when clicking overlay
-    modalOverlay.addEventListener('click', () => {
-      sidebarMenu.classList.remove('active');
-      searchPanel.classList.remove('active');
-      profileModal.classList.remove('active');
-      modalOverlay.classList.remove('active');
+    // Close modals when clicking overlay (excluding close buttons)
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        sidebarMenu.classList.remove('active');
+        searchPanel.classList.remove('active');
+        profileModal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      }
     });
 
     // Cart functionality

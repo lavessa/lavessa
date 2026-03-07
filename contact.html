@@ -178,21 +178,28 @@
       });
 
       // Search Panel Toggle
-      searchToggle.addEventListener('click', () => {
-        searchPanel.classList.add('active');
-        modalOverlay.classList.add('active');
-        searchInput.focus();
-        
-        // Load default products on open
+    function openSearch() {
+      searchPanel.classList.add('active');
+      modalOverlay.classList.add('active');
+      searchInput.focus();
+      
+      // Load default products on open
+      setTimeout(() => {
         renderSearchResults(allProducts);
-        document.getElementById('searchResults').classList.add('grid');
-      });
+        const resultsContainer = document.getElementById('searchResults');
+        if (resultsContainer) resultsContainer.classList.add('grid');
+      }, 100);
+    }
 
-      searchClose.addEventListener('click', () => {
-        searchPanel.classList.remove('active');
-        modalOverlay.classList.remove('active');
-      });
+    function closeSearch() {
+      searchPanel.classList.remove('active');
+      modalOverlay.classList.remove('active');
+      searchInput.value = '';
+      renderSearchResults(allProducts);
+    }
 
+    searchToggle.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
       // Search input listener with live filtering
       searchInput.addEventListener('input', (e) => {
         const query = e.target.value.trim().toLowerCase();
@@ -259,12 +266,14 @@
         profileForm.reset();
       });
 
-      // Close modals when clicking overlay
-      modalOverlay.addEventListener('click', () => {
+// Close modals when clicking overlay (excluding close buttons)
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
         sidebarMenu.classList.remove('active');
         searchPanel.classList.remove('active');
         profileModal.classList.remove('active');
         modalOverlay.classList.remove('active');
+      }
       });
 
       // Cart functionality
