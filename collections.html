@@ -69,8 +69,8 @@
           <i class="fa-solid fa-times"></i>
         </button>
       </div>
-      <div class="search-suggestions" id="searchSuggestions">
-        <!-- Suggestions will populate here -->
+      <div class="search-results" id="searchResults">
+        <!-- Results will populate here -->
       </div>
     </div>
 
@@ -128,16 +128,41 @@
     </section>
 
     <script>
-      // Sample products for search suggestions
+      // Sample products database (add this)
       const allProducts = [
-        { name: "Floral Whisper Suit", price: "Rs. 1,699", image: "Floral1.jpeg" },
-        { name: "Emerald Green Peplum", price: "Rs. 1,599", image: "peplum green.jpg" },
-        { name: "Regal Purple Set", price: "Rs. 1,999", image: "peplum purple.jpg" },
-        { name: "Azure Blue Printed", price: "Rs. 1,299", image: "printed blue.jpg" },
-        { name: "Crimson Red Wear", price: "Rs. 1,299", image: "printed red.jpg" },
-        { name: "Pristine White Set", price: "Rs. 2,499", image: "white (1).jpg" },
-        { name: "Embroidered Black", price: "Rs. 1,899", image: "peplum black.jpg" }
+        { id: 1, name: "Floral Whisper Cotton Suit", price: "₹1,699", image: "Floral1.jpeg", category: "floral" },
+        { id: 2, name: "Embroidered Black Peplum", price: "₹1,899", image: "peplum black.jpg", category: "peplum" },
+        { id: 3, name: "Emerald Green Peplum Top", price: "₹1,599", image: "peplum green.jpg", category: "peplum" },
+        { id: 4, name: "Regal Purple Peplum Set", price: "₹1,999", image: "peplum purple.jpg", category: "peplum" },
+        { id: 5, name: "Azure Blue Printed Kurti", price: "₹1,299", image: "printed blue.jpg", category: "printed" },
+        { id: 6, name: "Crimson Red Daily Wear", price: "₹1,299", image: "printed red.jpg", category: "printed" },
+        { id: 7, name: "Pristine White Kurta Set", price: "₹2,499", image: "white (1).jpg", category: "sets" },
+        { id: 8, name: "Lavender Floral Kurti", price: "₹899", image: "red.jpeg", category: "floral" },
+        { id: 9, name: "Pink Floral Kurti", price: "₹999", image: "pink.jpeg", category: "floral" },
+        { id: 10, name: "Blue Cotton Kurti", price: "₹1,199", image: "blue.jpeg", category: "printed" }
       ];
+
+      function renderSearchResults(products) {
+        const searchResults = document.getElementById('searchResults');
+        
+        if (products.length === 0) {
+          searchResults.innerHTML = '<p style="text-align: center; color: #999; padding: 40px 20px; grid-column: 1/-1;">No products found</p>';
+          return;
+        }
+
+        searchResults.innerHTML = products.map(product => `
+          <div class="search-product-card">
+            <div class="search-card-image">
+              <img src="${product.image}" alt="${product.name}" loading="lazy">
+            </div>
+            <div class="search-card-info">
+              <h4>${product.name}</h4>
+              <p class="search-card-price">${product.price}</p>
+              <button class="search-card-btn" onclick="addToCart('${product.name}')">Add to Cart</button>
+            </div>
+          </div>
+        `).join('');
+      }
 
       // DOM Elements
       const menuToggle = document.getElementById('menuToggle');
@@ -147,7 +172,6 @@
       const searchPanel = document.getElementById('searchPanel');
       const searchClose = document.getElementById('searchClose');
       const searchInput = document.getElementById('searchInput');
-      const searchSuggestions = document.getElementById('searchSuggestions');
       const profileToggle = document.getElementById('profileToggle');
       const profileModal = document.getElementById('profileModal');
       const profileClose = document.getElementById('profileClose');
@@ -178,9 +202,10 @@
         searchPanel.classList.add('active');
         modalOverlay.classList.add('active');
         searchInput.focus();
-        if (searchSuggestions.children.length === 0) {
-          loadSearchSuggestions();
-        }
+        
+        // Load default products on open
+        renderSearchResults(allProducts);
+        document.getElementById('searchResults').classList.add('grid');
       });
 
       searchClose.addEventListener('click', () => {
@@ -188,45 +213,23 @@
         modalOverlay.classList.remove('active');
       });
 
-      // Load search suggestions
-      function loadSearchSuggestions(query = '') {
-        searchSuggestions.innerHTML = '';
-        let products = allProducts;
-
-        if (query.trim() !== '') {
-          products = allProducts.filter(p =>
-            p.name.toLowerCase().includes(query.toLowerCase())
-          );
-        }
-
-        if (products.length === 0) {
-          searchSuggestions.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No products found</p>';
-          return;
-        }
-
-        products.forEach(product => {
-          const card = document.createElement('div');
-          card.className = 'search-product-card';
-          card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="search-product-img">
-            <div class="search-product-info">
-              <h4>${product.name}</h4>
-              <p>${product.price}</p>
-            </div>
-          `;
-          card.style.cursor = 'pointer';
-          card.addEventListener('click', () => {
-            searchPanel.classList.remove('active');
-            modalOverlay.classList.remove('active');
-            alert(`Added to cart: ${product.name}`);
-          });
-          searchSuggestions.appendChild(card);
-        });
-      }
-
-      // Search input listener
+      // Search input listener with live filtering
       searchInput.addEventListener('input', (e) => {
-        loadSearchSuggestions(e.target.value);
+        const query = e.target.value.trim().toLowerCase();
+        
+        if (query === '') {
+          // Show all products if search is empty
+          renderSearchResults(allProducts);
+        } else {
+          // Filter products based on search query
+          const filtered = allProducts.filter(product =>
+            product.name.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query)
+          );
+          renderSearchResults(filtered);
+        }
+        
+        document.getElementById('searchResults').classList.add('grid');
       });
 
       // Profile Modal Toggle
