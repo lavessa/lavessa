@@ -1465,7 +1465,7 @@ body {
 
 .slide-img-wrapper img {
   width: 100%;
-  height: auto; /* Natural height */
+  height: 320px; /* Fixed height for consistent display */
   object-fit: contain; /* Show full image without cropping */
   transition: transform 0.5s ease;
   display: block; /* Remove bottom gap */
@@ -1729,7 +1729,10 @@ body {
     flex: 0 0 90vw; /* 90% width as requested */
     scroll-snap-align: center;
     margin-right: 15px; /* Gap between cards */
+    margin: auto; /* Center the card */
     max-height: 450px; /* Limit height to 450px on mobile */
+    overflow: hidden; /* Prevent overflow */
+    border-radius: 20px; /* Rounded corners */
   }
 
   .carousel-slide:last-child {
@@ -1751,7 +1754,7 @@ body {
 
   .slide-img-wrapper img {
     width: 100%;
-    height: auto; /* Natural height */
+    height: 320px; /* Fixed height for consistent display */
     object-fit: contain; /* Show full image without cropping */
     border-radius: 20px;
     display: block; /* Remove bottom gap */
