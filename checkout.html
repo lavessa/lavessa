@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavessa - Checkout</nuto>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Lavessa</a>
+      <a href="cart.html" class="cart-link">Cart</a>
+      <a href="login.html" class="login-link">Login</a>
+    </nav>
+  </header>
+
+  <main class="checkout-page">
+    <h1>Checkout</h1>
+    <div id="order-summary"></div>
+
+    <form id="checkout-form">
+      <label>Name <input type="text" id="customer-name" required></label>
+      <label>Phone <input type="tel" id="customer-phone" required></label>
+      <label>Email <input type="email" id="customer-email" required></label>
+      <label>Address <textarea id="customer-address" required></textarea></label>
+      <button type="button" id="pay-btn" class="btn">Pay Now</button>
+    </form>
+  </main>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="firebase.js"></script>
+  <script src="checkout.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>

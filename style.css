@@ -1631,6 +1631,54 @@ html,body{
   overflow-x:hidden;
 }
 
+/* Additional page styles */
+.cart-page, .checkout-page, .login-page, .profile-page {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cart-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.cart-summary {
+  text-align: right;
+  margin-top: 20px;
+}
+.btn {
+  background: #5a2a82;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+form input, form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
 /* ===== ABOUT BRAND ===== */
 .about-brand {
   display: flex;

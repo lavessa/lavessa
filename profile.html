@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavessa - Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Lavessa</a>
+      <a href="cart.html" class="cart-link">Cart</a>
+      <a href="#" id="logout-btn" class="logout-link">Logout</a>
+    </nav>
+  </header>
+
+  <main class="profile-page">
+    <h1>Profile</h1>
+    <div id="user-info"></div>
+    <h2>Order History</h2>
+    <div id="order-history"></div>
+  </main>
+
+  <script src="firebase.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
