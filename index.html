@@ -231,32 +231,115 @@
   </footer>
 
   <script>
-    // Sample products database
-    const allProducts = [
-      { id: 1, name: "Floral Whisper Cotton Suit", price: "₹1,699", image: "Floral1.jpeg", category: "floral" },
-      { id: 2, name: "Embroidered Black Peplum", price: "₹1,899", image: "peplum black.jpg", category: "peplum" },
-      { id: 3, name: "Emerald Green Peplum Top", price: "₹1,599", image: "peplum green.jpg", category: "peplum" },
-      { id: 4, name: "Regal Purple Peplum Set", price: "₹1,999", image: "peplum purple.jpg", category: "peplum" },
-      { id: 5, name: "Azure Blue Printed Kurti", price: "₹1,299", image: "printed blue.jpg", category: "printed" },
-      { id: 6, name: "Crimson Red Daily Wear", price: "₹1,299", image: "printed red.jpg", category: "printed" },
-      { id: 7, name: "Pristine White Kurta Set", price: "₹2,499", image: "white (1).jpg", category: "sets" },
-      { id: 8, name: "Lavender Floral Kurti", price: "₹899", image: "red.jpeg", category: "floral" },
-      { id: 9, name: "Pink Floral Kurti", price: "₹999", image: "pink.jpeg", category: "floral" },
-      { id: 10, name: "Blue Cotton Kurti", price: "₹1,199", image: "blue.jpeg", category: "printed" }
-    ];
+    // Wrap all DOM code in DOMContentLoaded to ensure elements are loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sample products database
+      const allProducts = [
+        { id: 1, name: "Floral Whisper Cotton Suit", price: "₹1,699", image: "Floral1.jpeg", category: "floral" },
+        { id: 2, name: "Embroidered Black Peplum", price: "₹1,899", image: "peplum black.jpg", category: "peplum" },
+        { id: 3, name: "Emerald Green Peplum Top", price: "₹1,599", image: "peplum green.jpg", category: "peplum" },
+        { id: 4, name: "Regal Purple Peplum Set", price: "₹1,999", image: "peplum purple.jpg", category: "peplum" },
+        { id: 5, name: "Azure Blue Printed Kurti", price: "₹1,299", image: "printed blue.jpg", category: "printed" },
+        { id: 6, name: "Crimson Red Daily Wear", price: "₹1,299", image: "printed red.jpg", category: "printed" },
+        { id: 7, name: "Pristine White Kurta Set", price: "₹2,499", image: "white (1).jpg", category: "sets" },
+        { id: 8, name: "Lavender Floral Kurti", price: "₹899", image: "red.jpeg", category: "floral" },
+        { id: 9, name: "Pink Floral Kurti", price: "₹999", image: "pink.jpeg", category: "floral" },
+        { id: 10, name: "Blue Cotton Kurti", price: "₹1,199", image: "blue.jpeg", category: "printed" }
+      ];
 
-    // DOM Elements
-    const menuToggle = document.getElementById('menuToggle');
-    const sidebarMenu = document.getElementById('sidebarMenu');
-    const closeSidebar = document.getElementById('closeSidebar');
-    const searchToggle = document.getElementById('searchToggle');
-    const searchPanel = document.getElementById('searchPanel');
-    const searchClose = document.getElementById('searchClose');
-    const searchInput = document.getElementById('searchInput');
-    const profileToggle = document.getElementById('profileToggle');
-    const profileModal = document.getElementById('profileModal');
-    const profileClose = document.getElementById('profileClose');
-    const modalOverlay = document.getElementById('modalOverlay');
+      // DOM Elements
+      const menuToggle = document.getElementById('menuToggle');
+      const sidebarMenu = document.getElementById('sidebarMenu');
+      const closeSidebar = document.getElementById('closeSidebar');
+      const searchToggle = document.getElementById('searchToggle');
+      const searchPanel = document.getElementById('searchPanel');
+      const searchClose = document.getElementById('searchClose');
+      const searchInput = document.getElementById('searchInput');
+      const profileToggle = document.getElementById('profileToggle');
+      const profileModal = document.getElementById('profileModal');
+      const profileClose = document.getElementById('profileClose');
+      const modalOverlay = document.getElementById('modalOverlay');
+      const profileForm = document.getElementById('profileForm');
+
+      // ===== LOGIN/PROFILE SYSTEM =====
+      // These functions will be provided by login-modal.js
+      // Fallback versions if login-modal.js hasn't loaded yet
+      
+      function openProfileModal() {
+        if (window.updateProfileUI) {
+          window.updateProfileUI();
+        }
+        profileModal.classList.add('active');
+        modalOverlay.classList.add('active');
+      }
+
+      function closeProfileModal() {
+        profileModal.classList.remove('active');
+        modalOverlay.classList.remove('active');
+      }
+
+      // Make these globally accessible
+      window.openProfileModal = openProfileModal;
+      window.closeProfileModal = closeProfileModal;
+
+      // Set up profile modal event listeners
+      profileToggle.addEventListener('click', openProfileModal);
+      profileClose.addEventListener('click', closeProfileModal);
+      
+      // Set up form submission - will be enhanced by login-modal.js when it loads
+      function setupFormSubmission() {
+        if (profileForm && !profileForm.dataset.handlerAttached) {
+          profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const phone = document.getElementById('userPhone').value.trim();
+            const errorMsg = document.getElementById('loginError');
+
+            // Reset error message
+            errorMsg.textContent = '';
+
+            // Validate name
+            if (!name) {
+              errorMsg.textContent = 'Please enter your Full Name.';
+              return;
+            }
+
+            // Check if either email or phone is filled
+            if (!email && !phone) {
+              errorMsg.textContent = 'Please enter Email or Phone Number.';
+              return;
+            }
+
+            // Login successful - save user and close modal
+            const user = { name: name, email: email || null, phone: phone || null };
+            localStorage.setItem('lavessa_user', JSON.stringify(user));
+            profileForm.reset();
+            errorMsg.textContent = '';
+            
+            // Update UI and close modal
+            if (window.updateProfileUI) {
+              window.updateProfileUI();
+            }
+            closeProfileModal();
+          });
+          profileForm.dataset.handlerAttached = 'true';
+        }
+      }
+      
+      // Set up form submission immediately
+      setupFormSubmission();
+      
+      // Also set it up after a short delay to ensure login-modal.js has loaded
+      setTimeout(setupFormSubmission, 100);
+      
+      // Initialize profile UI
+      if (window.updateProfileUI) {
+        window.updateProfileUI();
+      }
+
+      // ===== REST OF EXISTING CODE =====
 
     // Sidebar Menu Toggle
     menuToggle.addEventListener('click', () => {
@@ -343,136 +426,65 @@
       document.getElementById('searchResults').classList.add('grid');
     });
 
-    // Profile form submission
-    const profileForm = document.querySelector('.profile-form');
-    profileForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('userName').value.trim();
-      const email = document.getElementById('userEmail').value.trim();
-      const phone = document.getElementById('userPhone').value.trim();
-      const errorMsg = document.getElementById('loginError');
+      // Close modals when clicking overlay (excluding close buttons)
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          sidebarMenu.classList.remove('active');
+          searchPanel.classList.remove('active');
+          profileModal.classList.remove('active');
+          modalOverlay.classList.remove('active');
+        }
+      });
 
-      // Reset error message
-      errorMsg.textContent = '';
-
-      // Validate name
-      if (!name) {
-        errorMsg.textContent = 'Please enter your Full Name.';
-        return;
+      // Prevent scroll when modal is open
+      function toggleBodyScroll(disable) {
+        if (disable) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
       }
 
-      // Check if either email or phone is filled
-      if (!email && !phone) {
-        errorMsg.textContent = 'Please enter Email or Phone Number.';
-        return;
+      // Cart functionality
+      function openCart() {
+        window.location.href = 'cart.html';
       }
 
-      // Login successful - save user and update UI
-      const user = { name, email: email || null, phone: phone || null };
-      localStorage.setItem('lavessa_user', JSON.stringify(user));
-      profileForm.reset();
-      updateProfileModal();
-      closeProfileModal();
-    });
-
-    // Profile Modal Functions
-    function updateProfileModal() {
-      const user = JSON.parse(localStorage.getItem('lavessa_user'));
-      const profileForm = document.getElementById('profileForm');
-      const profileContent = document.getElementById('profile-content');
-      const h2 = document.querySelector('.profile-modal h2');
-      
-      if (user) {
-        h2.textContent = 'My Profile';
-        profileForm.style.display = 'none';
-        profileContent.style.display = 'block';
-        let html = `<div class="profile-info"><h3>${user.name}</h3>`;
-        if (user.email) html += `<p>📧 ${user.email}</p>`;
-        if (user.phone) html += `<p>📱 ${user.phone}</p>`;
-        html += `<button class="logout-btn" onclick="logoutUser()">Logout</button></div>`;
-        profileContent.innerHTML = html;
-      } else {
-        h2.textContent = 'Sign In';
-        profileForm.style.display = 'block';
-        profileContent.style.display = 'none';
+      function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
       }
-    }
 
-    function logoutUser() {
-      localStorage.removeItem('lavessa_user');
-      document.getElementById('profileForm').reset();
-      document.getElementById('loginError').textContent = '';
-      updateProfileModal();
-      closeProfileModal();
-    }
-
-    // Initialize profile modal on page load
-    updateProfileModal();
-
-    function openProfileModal() {
-      updateProfileModal();
-      profileModal.classList.add('active');
-      modalOverlay.classList.add('active');
-    }
-
-    function closeProfileModal() {
-      profileModal.classList.remove('active');
-      modalOverlay.classList.remove('active');
-    }
-
-    // Profile Toggle
-    profileToggle.addEventListener('click', openProfileModal);
-    profileClose.addEventListener('click', closeProfileModal);
-
-    // Close modals when clicking overlay (excluding close buttons)
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        sidebarMenu.classList.remove('active');
-        searchPanel.classList.remove('active');
-        profileModal.classList.remove('active');
-        modalOverlay.classList.remove('active');
+      function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.getElementById("cart-count").innerText = cart.length;
       }
-    });
 
-    // Cart functionality
-    function openCart() {
-      alert("Cart page coming soon 🛍");
-    }
-
-    function addToCart(product) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
       updateCartCount();
-    }
 
-    function updateCartCount() {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      document.getElementById("cart-count").innerText = cart.length;
-    }
-
-    updateCartCount();
-
-    // Prevent scroll when modal is open
-    function toggleBodyScroll(disable) {
-      if (disable) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = 'auto';
+      // Prevent scroll when modal is open
+      function toggleBodyScroll(disable) {
+        if (disable) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto';
+        }
       }
-    }
 
-    // Update scroll lock when modals change
-    const observer = new MutationObserver(() => {
-      const anyModalActive = sidebarMenu.classList.contains('active') ||
-        searchPanel.classList.contains('active') ||
-        profileModal.classList.contains('active');
-      toggleBodyScroll(anyModalActive);
-    });
+      // Update scroll lock when modals change
+      const observer = new MutationObserver(() => {
+        const anyModalActive = sidebarMenu.classList.contains('active') ||
+          searchPanel.classList.contains('active') ||
+          profileModal.classList.contains('active');
+        toggleBodyScroll(anyModalActive);
+      });
 
-    observer.observe(sidebarMenu, { attributes: true });
-    observer.observe(searchPanel, { attributes: true });
-    observer.observe(profileModal, { attributes: true });
+      observer.observe(sidebarMenu, { attributes: true });
+      observer.observe(searchPanel, { attributes: true });
+      observer.observe(profileModal, { attributes: true });
+    }); // END DOMContentLoaded
   </script>
 
   <script>
