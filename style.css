@@ -12,7 +12,57 @@ body {
   cursor: none;
   overflow-x: hidden;
   max-width: 100%;
+  box-sizing: border-box;
 }
+
+/* ===== MOBILE FIRST RESPONSIVENESS ===== */
+/* Prevent horizontal scrolling on all devices */
+* {
+  box-sizing: border-box;
+}
+
+section, main, nav, footer {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Disable hover states on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  button:hover,
+  a:hover,
+  .card:hover,
+  .nav-icon:hover {
+    transform: none;
+  }
+
+  .nav-icon:hover {
+    color: #603275;
+  }
+
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* Remove custom cursor on mobile */
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none !important;
+  }
 
 /* Custom Cursor */
 .custom-cursor {
@@ -668,8 +718,8 @@ body {
   }
 
   .search-close {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     font-size: 20px;
   }
 
@@ -3490,6 +3540,137 @@ form input, form textarea {
   .current-price {
     font-size: 24px;
   }
+}
+
+/* ===== COMPREHENSIVE MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+  /* Button standardization for touch */
+  .btn-add-to-cart,
+  .btn-buy-now,
+  .login-btn,
+  .guest-btn,
+  .view-product-btn,
+  .logout-btn,
+  .follow-btn,
+  .explore-btn,
+  .search-card-btn {
+    min-height: 48px;
+    padding: 14px 20px;
+    font-size: 14px;
+    border-radius: 10px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  /* Form inputs touch optimization */
+  input[type="text"],
+  input[type="email"],
+  input[type="phone"],
+  textarea {
+    font-size: 16px;
+    min-height: 48px;
+    padding: 14px;
+  }
+
+  /* Navigation items touch target */
+  .sidebar-link,
+  .footer-links a {
+    min-height: 48px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Card spacing for better tapping */
+  .card {
+    border-radius: 12px;
+  }
+
+  /* Prevent text selection on interactive elements */
+  button,
+  a,
+  .nav-icon {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Ensure modals don't overflow */
+  .modal-content,
+  .profile-modal {
+    max-width: 100% !important;
+    width: 90%;
+    max-width: 360px;
+  }
+
+  /* Ensure search panel spans full width */
+  .search-panel {
+    max-width: 100vw;
+  }
+
+  /* Ensure sidebar menu responsive */
+  .sidebar-menu {
+    width: 80%;
+    max-width: 280px;
+  }
+
+  /* Prevent pinch zoom on inputs */
+  input {
+    font-size: 16px;
+  }
+
+  /* Footer links touch optimization */
+  .footer-links a {
+    padding: 12px 16px;
+  }
+
+  /* Product grid spacing on mobile */
+  .carousel-track {
+    gap: 12px;
+  }
+
+  .card {
+    min-height: 360px;
+  }
+
+  /* Instagram grid touch optimization */
+  .instagram-item {
+    border-radius: 10px;
+  }
+
+  /* Trust features touch optimization */
+  .trust-feature-block {
+    padding: 20px 16px;
+  }
+
+  /* No horizontal scroll on any container */
+  .carousel,
+  .carousel-track,
+  .search-results,
+  .instagram-grid {
+    overflow-x: hidden;
+  }
+
+  /* Ensure full viewport usage */
+  body {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Safe area insets for notched devices */
+  @supports (padding: max(0px)) {
+    body {
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+    }
+
+    .new-navbar {
+      padding-left: max(10px, env(safe-area-inset-left));
+      padding-right: max(10px, env(safe-area-inset-right));
+    }
+  }
+}
+  }
 
   .price-section {
     gap: 8px;
@@ -3773,9 +3954,9 @@ form input, form textarea {
 /* ===== MOBILE RESPONSIVENESS ===== */
 @media (max-width: 768px) {
 
-  /* Disable Custom Cursor on Touch Devices */
-  .custom-cursor {
-    display: none !important;
+  /* Universal Mobile Improvements */
+  * {
+    box-sizing: border-box;
   }
 
   body {
@@ -3783,6 +3964,87 @@ form input, form textarea {
     padding-bottom: 0 !important;
     max-width: 100%;
     overflow-x: hidden;
+  }
+
+  /* Disable Custom Cursor on Touch Devices */
+  .custom-cursor {
+    display: none !important;
+  }
+
+  /* Touch-friendly Button Sizing */
+  button {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 20px;
+  }
+
+  /* Touch-friendly Input Sizing */
+  input[type="text"],
+  input[type="email"],
+  input[type="phone"],
+  input[type="number"],
+  textarea {
+    min-height: 48px;
+    font-size: 16px;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(96, 50, 117, 0.15) !important;
+  }
+
+  /* Prevent zoom on input focus */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Navigation touch optimization */
+  .nav-icon {
+    min-width: 48px;
+    min-height: 48px;
+    padding: 10px;
+  }
+
+  /* Link touch targets */
+  a {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    padding: 12px;
+  }
+
+  /* Ensure sections don't overflow */
+  section {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Cards and content containers */
+  .card,
+  .modal-content,
+  .featured-section,
+  .trust-features,
+  .instagram-section,
+  .product-detail-container {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Images responsive on mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Disable Custom Cursor on Touch Devices */
+  .custom-cursor {
+    display: none !important;
   }
 
   /* New Navbar stays at top */
