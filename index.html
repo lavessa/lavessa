@@ -168,74 +168,47 @@
 
   <!-- INTERACTIVE PRODUCT CAROUSEL -->
   <section class="featured-section">
-    <h2>Featured Collections</h2>
+
+    <h2 class="featured-title">Featured Collections</h2>
     <a href="collections.html" class="view-all">View All</a>
 
-    <div class="featured-carousel">
-      <div class="featured-track">
+    <div class="carousel">
+      <div class="carousel-track">
 
-        <div class="featured-card">
-          <a href="floral.html">
-            <img src="Floral1.jpeg" alt="Floral Kurti">
-            <span class="badge">#Trending</span>
-            <h3>Floral Whisper Cotton Suit</h3>
-            <p>From Rs. 1,699</p>
-          </a>
+        <div class="card">
+          <img src="black front.jpeg" alt="Floral Kurti">
+          <h3>Floral Whisper Cotton Suit</h3>
+          <p>From Rs. 1,699</p>
         </div>
 
-        <div class="featured-card">
-          <a href="peplum.html">
-            <img src="peplum black.jpg" alt="Peplum Black">
-            <span class="badge new-badge">NEW</span>
-            <h3>Embroidered Black Peplum</h3>
-            <p>From Rs. 1,899</p>
-          </a>
+        <div class="card">
+          <img src="peplum black.jpg" alt="Peplum Black">
+          <h3>Embroidered Black Peplum</h3>
+          <p>From Rs. 1,899</p>
         </div>
 
-        <div class="featured-card">
-          <a href="peplum.html">
-            <img src="peplum green.jpg" alt="Peplum Green">
-            <h3>Emerald Green Peplum Top</h3>
-            <p>From Rs. 1,599</p>
-          </a>
+        <div class="card">
+          <img src="peplum green.jpg" alt="Peplum Green">
+          <h3>Emerald Green Peplum Top</h3>
+          <p>From Rs. 1,599</p>
         </div>
 
-        <div class="featured-card">
-          <a href="peplum.html">
-            <img src="peplum purple.jpg" alt="Peplum Purple">
-            <h3>Regal Purple Peplum Set</h3>
-            <p>From Rs. 1,999</p>
-          </a>
-        </div>
-
-        <div class="featured-card">
-          <a href="product1.html">
-            <img src="printed blue.jpg" alt="Printed Blue">
-            <span class="badge">Classic</span>
-            <h3>Azure Blue Printed Kurti</h3>
-            <p>From Rs. 1,299</p>
-          </a>
-        </div>
-
-        <div class="featured-card">
-          <a href="product1.html">
-            <img src="printed red.jpg" alt="Printed Red">
-            <h3>Crimson Red Daily Wear</h3>
-            <p>From Rs. 1,299</p>
-          </a>
-        </div>
-
-        <div class="featured-card">
-          <a href="sets.html">
-            <img src="white (1).jpg" alt="White Lifestyle">
-            <span class="badge">Premium</span>
-            <h3>Pristine White Kurta Set</h3>
-            <p>From Rs. 2,499</p>
-          </a>
+        <div class="card">
+          <img src="printed red.jpg" alt="Printed Red">
+          <h3>Crimson Red Daily Wear</h3>
+          <p>From Rs. 1,299</p>
         </div>
 
       </div>
     </div>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
   </section>
 
   <!-- ABOUT THE BRAND -->
@@ -501,22 +474,18 @@
     });
 
     // Interactive Product Carousel Logic
-    const trackContainer = document.querySelector('.featured-carousel');
-    const track = document.querySelector('.featured-track');
+    const trackContainer = document.querySelector('.carousel');
+    const track = document.querySelector('.carousel-track');
     const slides = Array.from(track.children);
 
     // Check if mobile
     const isMobile = window.innerWidth <= 768;
 
-    // Update dots based on scroll position (for mobile)
+    // Update pagination dots based on scroll position
     const updateDotsOnScroll = () => {
       if (!isMobile) return;
 
       const container = trackContainer;
-      const scrollLeft = container.scrollLeft;
-      const containerWidth = container.offsetWidth;
-
-      // Find which slide is most visible in the center
       let closestIndex = 0;
       let minDistance = Infinity;
 
@@ -526,22 +495,17 @@
         const slideCenter = slideRect.left + slideRect.width / 2;
         const containerCenter = containerRect.left + containerRect.width / 2;
         const distance = Math.abs(slideCenter - containerCenter);
-
         if (distance < minDistance) {
           minDistance = distance;
           closestIndex = index;
         }
       });
 
-      // Update any existing dots if they exist
-      const dots = document.querySelectorAll('.carousel-dot');
+      const dots = document.querySelectorAll('.dot');
       dots.forEach(dot => dot.classList.remove('active'));
-      if (dots[closestIndex]) {
-        dots[closestIndex].classList.add('active');
-      }
+      if (dots[closestIndex]) dots[closestIndex].classList.add('active');
     };
 
-    // Listen for scroll events on mobile
     if (isMobile) {
       trackContainer.addEventListener('scroll', updateDotsOnScroll);
     }
