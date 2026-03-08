@@ -1715,20 +1715,23 @@ body {
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    padding-left: 12.5vw; /* Center the first card: (100vw - 75vw) / 2 = 12.5vw */
   }
 
   .carousel-track {
     width: auto;
+    padding-right: 12.5vw; /* Ensure last card can center */
   }
 
   .carousel-slide {
-    flex: 0 0 85vw; /* 85% of viewport width */
-    scroll-snap-align: start;
-    margin-right: 10px; /* Small gap between cards */
+    flex: 0 0 75vw; /* 75% width allows peeking of next card */
+    scroll-snap-align: center;
+    margin-right: 15px; /* Gap between cards */
+    max-height: 65vh; /* Limit height to 65% of viewport height */
   }
 
   .carousel-slide:last-child {
-    margin-right: 20px; /* Extra margin at end */
+    margin-right: 0; /* Remove margin from last card */
   }
 
   .carousel-btn {
@@ -1736,10 +1739,18 @@ body {
   }
 
   .slide-img-wrapper {
-    aspect-ratio: 3 / 4;
-    height: auto; /* Let aspect-ratio control height */
-    border-radius: 20px; /* Larger rounded corners */
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* Match card corners */
     box-shadow: 0 10px 30px rgba(96, 50, 117, 0.15);
+    overflow: hidden; /* Ensure image doesn't overflow */
+  }
+
+  .slide-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
   }
 
   /* About Brand Section */

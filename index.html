@@ -581,9 +581,14 @@
     // Function to scroll to a specific slide
     const scrollToSlide = (index) => {
       if (isMobile) {
-        // On mobile, scroll the container to the slide
-        const slideWidth = slides[0].offsetWidth + 10; // Include margin
-        trackContainer.scrollLeft = index * slideWidth;
+        // On mobile, use scrollIntoView for smooth centering
+        if (slides[index]) {
+          slides[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+          });
+        }
       } else {
         // On desktop, use transform to move groups
         const slidesToShow = 4;
@@ -608,13 +613,30 @@
     const updateDotsOnScroll = () => {
       if (!isMobile) return;
       
-      const slideWidth = slides[0].offsetWidth + 10;
-      const scrollLeft = trackContainer.scrollLeft;
-      const index = Math.round(scrollLeft / slideWidth);
+      const container = trackContainer;
+      const scrollLeft = container.scrollLeft;
+      const containerWidth = container.offsetWidth;
+      
+      // Find which slide is most visible in the center
+      let closestIndex = 0;
+      let minDistance = Infinity;
+      
+      slides.forEach((slide, index) => {
+        const slideRect = slide.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const slideCenter = slideRect.left + slideRect.width / 2;
+        const containerCenter = containerRect.left + containerRect.width / 2;
+        const distance = Math.abs(slideCenter - containerCenter);
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
       
       dots.forEach(dot => dot.classList.remove('active'));
-      if (dots[index]) {
-        dots[index].classList.add('active');
+      if (dots[closestIndex]) {
+        dots[closestIndex].classList.add('active');
       }
     };
 
