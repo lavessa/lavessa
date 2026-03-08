@@ -602,6 +602,76 @@ body {
   transform: translateY(-2px);
 }
 
+.profile-info {
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #2e1a38;
+  margin: 0 0 15px;
+}
+
+.profile-info p {
+  color: #603275;
+  font-size: 14px;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background: #c9302c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(217, 83, 79, 0.3);
+}
+
+/* Mobile optimization for profile modal */
+@media(max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 22px;
+  }
+
+  .profile-form {
+    gap: 12px;
+  }
+
+  .profile-form input {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .login-btn, .guest-btn, .logout-btn {
+    padding: 14px;
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  .profile-info h3 {
+    font-size: 20px;
+  }
+}
+
 /* ===== HERO ===== */
 /* HERO SECTION */
 .hero {

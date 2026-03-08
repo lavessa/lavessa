@@ -90,6 +90,9 @@
         <div class="error-message" id="loginError"></div>
         <button type="submit" class="login-btn">Login</button>
       </form>
+      <div id="profile-content" style="display:none;">
+        <!-- Profile info will be inserted here -->
+      </div>
       <div class="or-divider">Or continue as guest</div>
       <button class="guest-btn" onclick="closeProfileModal()">Browse as Guest</button>
     </div>
@@ -246,7 +249,41 @@
     });
 
     // Profile Modal Functions
+    function updateProfileModal() {
+      const user = JSON.parse(localStorage.getItem('lavessa_user'));
+      const profileForm = document.getElementById('profileForm');
+      const profileContent = document.getElementById('profile-content');
+      const h2 = document.querySelector('.profile-modal h2');
+      
+      if (user) {
+        h2.textContent = 'My Profile';
+        profileForm.style.display = 'none';
+        profileContent.style.display = 'block';
+        let html = `<div class="profile-info"><h3>${user.name}</h3>`;
+        if (user.email) html += `<p>📧 ${user.email}</p>`;
+        if (user.phone) html += `<p>📱 ${user.phone}</p>`;
+        html += `<button class="logout-btn" onclick="logoutUser()">Logout</button></div>`;
+        profileContent.innerHTML = html;
+      } else {
+        h2.textContent = 'Sign In';
+        profileForm.style.display = 'block';
+        profileContent.style.display = 'none';
+      }
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('lavessa_user');
+      document.getElementById('profileForm').reset();
+      document.getElementById('loginError').textContent = '';
+      updateProfileModal();
+      closeProfileModal();
+    }
+
+    // Initialize profile modal on page load
+    updateProfileModal();
+
     function openProfileModal() {
+      updateProfileModal();
       profileModal.classList.add('active');
       modalOverlay.classList.add('active');
     }
@@ -274,7 +311,7 @@
 
       // Validate name
       if (!name) {
-        errorMsg.textContent = 'Please enter your name.';
+        errorMsg.textContent = 'Please enter your Full Name.';
         return;
       }
 
@@ -284,11 +321,12 @@
         return;
       }
 
-      // Login successful
-      localStorage.setItem('userProfile', JSON.stringify({ name, email, phone }));
-      alert(`Welcome ${name}! Login successful 💜`);
-      closeProfileModal();
+      // Login successful - save user and update UI
+      const user = { name, email: email || null, phone: phone || null };
+      localStorage.setItem('lavessa_user', JSON.stringify(user));
       profileForm.reset();
+      updateProfileModal();
+      closeProfileModal();
     });
 
     // Close modals when clicking overlay (excluding close buttons)
