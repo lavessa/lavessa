@@ -2,12 +2,7 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-  <meta name="theme-color" content="#603275">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
@@ -75,47 +70,22 @@
       </button>
     </div>
     <div class="sidebar-content">
-      <a href="index.html" class="sidebar-link">
-        <i class="fas fa-home"></i> Shop All
-      </a>
-      
+      <a href="index.html" class="sidebar-link">Shop All</a>
       <div class="sidebar-section">
         <h3>Categories</h3>
-        <a href="floral.html" class="sidebar-link sub-link">
-          <i class="fas fa-flower"></i> Floral Kurtis
-        </a>
-        <a href="peplum.html" class="sidebar-link sub-link">
-          <i class="fas fa-dress"></i> Peplum Tops
-        </a>
-        <a href="sets.html" class="sidebar-link sub-link">
-          <i class="fas fa-shirt"></i> Kurta Sets
-        </a>
+        <a href="floral.html" class="sidebar-link sub-link">Floral Printed Kurtis</a>
+        <a href="peplum.html" class="sidebar-link sub-link">Peplum Kurtis</a>
+        <a href="sets.html" class="sidebar-link sub-link">Kurta Sets</a>
       </div>
-
-      <a href="collections.html" class="sidebar-link">
-        <i class="fas fa-star"></i> New Arrivals
-      </a>
-
-      <a href="contact.html" class="sidebar-link">
-        <i class="fas fa-envelope"></i> Contact Us
-      </a>
+      <a href="contact.html" class="sidebar-link">Contact Us</a>
     </div>
   </div>
-
-  <!-- MODAL OVERLAY FOR MENU -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-  <!-- SEARCH OVERLAY -->
-  <div class="search-overlay" id="searchOverlay"></div>
 
   <!-- SEARCH PANEL -->
   <div class="search-panel" id="searchPanel">
     <div class="search-header">
-      <div class="search-input-wrapper">
-        <i class="fas fa-magnifying-glass search-input-icon"></i>
-        <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
-      </div>
-      <button class="search-close" id="searchClose" title="Close search">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
+      <button class="search-close" id="searchClose">
         <i class="fa-solid fa-times"></i>
       </button>
     </div>
@@ -256,85 +226,6 @@
 
   </section>
 
-  <!-- TRUST FEATURES SECTION -->
-  <section class="trust-features">
-    <div class="trust-features-container">
-      <div class="trust-feature-block">
-        <div class="feature-icon">
-          <i class="fas fa-truck"></i>
-        </div>
-        <h3>Free Shipping</h3>
-        <p>On orders above ₹500</p>
-      </div>
-
-      <div class="trust-feature-block">
-        <div class="feature-icon">
-          <i class="fas fa-undo"></i>
-        </div>
-        <h3>Easy Returns</h3>
-        <p>7-day return policy</p>
-      </div>
-
-      <div class="trust-feature-block">
-        <div class="feature-icon">
-          <i class="fas fa-lock"></i>
-        </div>
-        <h3>Secure Payments</h3>
-        <p>100% secure transactions</p>
-      </div>
-
-      <div class="trust-feature-block">
-        <div class="feature-icon">
-          <i class="fas fa-leaf"></i>
-        </div>
-        <h3>Premium Cotton</h3>
-        <p>Soft & breathable fabric</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- INSTAGRAM SHOWCASE -->
-  <section class="instagram-section">
-    <div class="instagram-container">
-      <h2 class="instagram-title">Follow Lavessa on Instagram</h2>
-      <p class="instagram-subtitle">@lavessa</p>
-
-      <div class="instagram-grid">
-        <a href="https://instagram.com/lavessa" target="_blank" class="instagram-item">
-          <img src="black front.jpeg" alt="Lavessa Fashion">
-          <div class="instagram-overlay">
-            <i class="fab fa-instagram"></i>
-          </div>
-        </a>
-
-        <a href="https://instagram.com/lavessa" target="_blank" class="instagram-item">
-          <img src="peplum black.jpg" alt="Lavessa Fashion">
-          <div class="instagram-overlay">
-            <i class="fab fa-instagram"></i>
-          </div>
-        </a>
-
-        <a href="https://instagram.com/lavessa" target="_blank" class="instagram-item">
-          <img src="peplum green.jpg" alt="Lavessa Fashion">
-          <div class="instagram-overlay">
-            <i class="fab fa-instagram"></i>
-          </div>
-        </a>
-
-        <a href="https://instagram.com/lavessa" target="_blank" class="instagram-item">
-          <img src="white (1).jpg" alt="Lavessa Fashion">
-          <div class="instagram-overlay">
-            <i class="fab fa-instagram"></i>
-          </div>
-        </a>
-      </div>
-
-      <a href="https://instagram.com/lavessa" target="_blank" class="follow-btn">
-        <i class="fab fa-instagram"></i> Follow @lavessa
-      </a>
-    </div>
-  </section>
-
   <!-- ABOUT THE BRAND -->
   <section class="about-brand">
     <div class="about-content">
@@ -346,70 +237,9 @@
       <img src="white (1).jpg" alt="Lavessa Lifestyle">
     </div>
   </section>
-
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      
-      <!-- Column 1: Brand Info -->
-      <div class="footer-column">
-        <div class="footer-brand">
-          <img src="logo.png" alt="Lavessa Logo" class="footer-logo">
-          <h3>Lavessa</h3>
-        </div>
-        <p class="footer-description">
-          Elegant, affordable kurtis that blend traditional elegance with modern comfort. Crafted for the modern woman on the go.
-        </p>
-        <div class="footer-social">
-          <a href="https://instagram.com/lavessa" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://wa.me/919876543210" target="_blank" class="social-icon">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Column 2: Shop Links -->
-      <div class="footer-column">
-        <h4 class="footer-title">Shop</h4>
-        <ul class="footer-links">
-          <li><a href="floral.html">Floral Kurtis</a></li>
-          <li><a href="peplum.html">Peplum Tops</a></li>
-          <li><a href="sets.html">Kurta Sets</a></li>
-          <li><a href="collections.html">New Arrivals</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 3: Customer Help -->
-      <div class="footer-column">
-        <h4 class="footer-title">Help</h4>
-        <ul class="footer-links">
-          <li><a href="#">Shipping Info</a></li>
-          <li><a href="#">Returns & Exchanges</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 4: Company Legal -->
-      <div class="footer-column">
-        <h4 class="footer-title">Company</h4>
-        <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Size Guide</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <p>&copy; 2026 Lavessa Fashion. All rights reserved.</p>
-      <p>Designed with <i class="fas fa-heart"></i> for fashion lovers</p>
-    </div>
+  <footer>
+    <p>© 2026 Lavessa Fashion</p>
   </footer>
 
   <script>
@@ -526,18 +356,12 @@
     // Sidebar Menu Toggle
     menuToggle.addEventListener('click', () => {
       sidebarMenu.classList.add('active');
-      document.getElementById('sidebarOverlay').classList.add('active');
+      modalOverlay.classList.add('active');
     });
 
     closeSidebar.addEventListener('click', () => {
       sidebarMenu.classList.remove('active');
-      document.getElementById('sidebarOverlay').classList.remove('active');
-    });
-
-    // Close sidebar when clicking on overlay
-    document.getElementById('sidebarOverlay').addEventListener('click', () => {
-      sidebarMenu.classList.remove('active');
-      document.getElementById('sidebarOverlay').classList.remove('active');
+      modalOverlay.classList.remove('active');
     });
 
     // Close sidebar when clicking on a link
@@ -545,7 +369,7 @@
     sidebarLinks.forEach(link => {
       link.addEventListener('click', () => {
         sidebarMenu.classList.remove('active');
-        document.getElementById('sidebarOverlay').classList.remove('active');
+        modalOverlay.classList.remove('active');
       });
     });
 
@@ -553,13 +377,7 @@
       const searchResults = document.getElementById('searchResults');
       
       if (products.length === 0) {
-        searchResults.innerHTML = `
-          <div class="search-no-results">
-            <i class="fas fa-search"></i>
-            <h3>No products found</h3>
-            <p>Try searching with different keywords</p>
-          </div>
-        `;
+        searchResults.innerHTML = '<p style="text-align: center; color: #999; padding: 40px 20px; grid-column: 1/-1;">No products found</p>';
         return;
       }
 
@@ -580,9 +398,8 @@
     // Search Panel Toggle
     function openSearch() {
       searchPanel.classList.add('active');
-      document.getElementById('searchOverlay').classList.add('active');
+      modalOverlay.classList.add('active');
       searchInput.focus();
-      document.body.style.overflow = 'hidden';
       
       // Load default products on open
       setTimeout(() => {
@@ -594,17 +411,13 @@
 
     function closeSearch() {
       searchPanel.classList.remove('active');
-      document.getElementById('searchOverlay').classList.remove('active');
+      modalOverlay.classList.remove('active');
       searchInput.value = '';
-      document.body.style.overflow = '';
       renderSearchResults(allProducts);
     }
 
     searchToggle.addEventListener('click', openSearch);
     searchClose.addEventListener('click', closeSearch);
-
-    // Close search when clicking on overlay
-    document.getElementById('searchOverlay').addEventListener('click', closeSearch);
 
     // Search input listener with live filtering
     searchInput.addEventListener('input', (e) => {
@@ -623,13 +436,6 @@
       }
       
       document.getElementById('searchResults').classList.add('grid');
-    });
-
-    // Keyboard shortcut to close search (ESC key)
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && searchPanel.classList.contains('active')) {
-        closeSearch();
-      }
     });
 
       // Close modals when clicking overlay (excluding close buttons)
