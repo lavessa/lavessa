@@ -1430,20 +1430,21 @@ body {
   overflow: hidden;
   width: 100%;
   border-radius: 12px;
+  scroll-behavior: smooth;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-  width: 175%;
-  /* 7 slides × 25% per slide on desktop */
+  width: max-content;
+  /* Allow natural width for scrolling */
 }
 
 .carousel-slide {
-  min-width: calc(100% / 4);
-  /* Display 4 slides at a time */
+  flex: 0 0 calc(100% / 4);
+  /* Display 4 slides at a time on desktop */
   padding: 0 10px;
   box-sizing: border-box;
+  scroll-snap-align: start;
 }
 
 .carousel-slide a {
@@ -1458,6 +1459,7 @@ body {
   background: #fdfafd;
   /* light placeholder back */
   aspect-ratio: 3 / 4;
+  box-shadow: 0 8px 25px rgba(96, 50, 117, 0.1);
 }
 
 .slide-img-wrapper img {
@@ -1708,27 +1710,36 @@ body {
     padding: 40px 20px;
   }
 
+  .carousel-track-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-track {
+    width: auto;
+  }
+
   .carousel-slide {
-    min-width: 100%;
-    /* Show 1 item at a time */
+    flex: 0 0 85vw; /* 85% of viewport width */
+    scroll-snap-align: start;
+    margin-right: 10px; /* Small gap between cards */
+  }
+
+  .carousel-slide:last-child {
+    margin-right: 20px; /* Extra margin at end */
   }
 
   .carousel-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .prev-btn {
-    margin-right: 10px;
-  }
-
-  .next-btn {
-    margin-left: 10px;
+    display: none; /* Hide buttons on mobile for swipe navigation */
   }
 
   .slide-img-wrapper {
     aspect-ratio: 3 / 4;
-    height: 250px;
+    height: auto; /* Let aspect-ratio control height */
+    border-radius: 20px; /* Larger rounded corners */
+    box-shadow: 0 10px 30px rgba(96, 50, 117, 0.15);
   }
 
   /* About Brand Section */
