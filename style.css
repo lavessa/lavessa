@@ -1663,90 +1663,234 @@ body {
   transform: scale(1.4);
 }
 
-/* ===== FEATURED CAROUSEL ===== */
-.featured-section{
-  text-align:center;
-  padding:40px 20px;
+/* ===== FEATURED COLLECTIONS GRID ===== */
+.featured-section {
+  padding: 60px 20px;
+  text-align: center;
+  background: #fafafa;
 }
 
-.featured-title{
-  font-size:32px;
-  color:#3a1f44;
+.featured-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: #2e1a38;
+  margin-bottom: 12px;
+  font-weight: 700;
 }
 
-/* view-all styles remain unchanged */
 .view-all {
-  font-size: 16px;
+  font-size: 14px;
   color: #603275;
   text-decoration: none;
-  border-bottom: 1px solid #603275;
-  padding-bottom: 2px;
-  transition: color 0.3s ease;
+  border-bottom: 2px solid #603275;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .view-all:hover {
   color: #2e1a38;
   border-color: #2e1a38;
+  transform: translateX(3px);
 }
 
-.carousel{
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
+/* Product Grid Layout */
+.carousel {
+  width: 100%;
+  overflow: visible;
+  margin-bottom: 30px;
 }
 
-.carousel-track{
-  display:flex;
-  gap:20px;
+.carousel-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 10px;
 }
 
-.card{
-  flex:0 0 85%;
-  max-width:350px;
-  margin:auto;
-  background:white;
-  border-radius:20px;
-  padding:15px;
-  scroll-snap-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+/* Product Card */
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(96, 50, 117, 0.1);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 380px;
+  cursor: pointer;
 }
 
-.card img{
-  width:100%;
-  height:300px;
-  object-fit:cover;
-  border-radius:15px;
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 35px rgba(96, 50, 117, 0.2);
 }
 
-.card h3{
-  margin-top:10px;
-  font-size:18px;
-  color:#3a1f44;
+.card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.card p{
-  color:#777;
+.card:hover img {
+  transform: scale(1.05);
 }
 
-.dots{
-  margin-top:15px;
+.card h3 {
+  font-size: 16px;
+  color: #2e1a38;
+  margin: 16px 16px 8px 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 
-.dot{
-  height:10px;
-  width:10px;
-  margin:5px;
-  background:#d5c7e3;
-  border-radius:50%;
-  display:inline-block;
+.card p {
+  font-size: 14px;
+  color: #603275;
+  font-weight: 600;
+  margin: 0 16px 16px 16px;
+  padding-bottom: 8px;
 }
 
-.dot.active{
-  background:#5a2a82;
+/* Dots Navigation */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-html,body{
-  overflow-x:hidden;
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e0d5e6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.dot:hover {
+  background: #9e6bb0;
+}
+
+.dot.active {
+  background: #603275;
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* Responsive Grid */
+@media (max-width: 1200px) {
+  .carousel-track {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-section {
+    padding: 48px 16px;
+  }
+
+  .featured-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .view-all {
+    margin-bottom: 30px;
+  }
+
+  .carousel-track {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0 8px;
+  }
+
+  .card {
+    min-height: 340px;
+    border-radius: 12px;
+  }
+
+  .card img {
+    height: 240px;
+  }
+
+  .card h3 {
+    font-size: 15px;
+    margin: 12px 12px 6px 12px;
+  }
+
+  .card p {
+    font-size: 13px;
+    margin: 0 12px 12px 12px;
+    padding-bottom: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-section {
+    padding: 36px 12px;
+  }
+
+  .featured-title {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .carousel-track {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 0;
+  }
+
+  .card {
+    min-height: 320px;
+    border-radius: 10px;
+  }
+
+  .card img {
+    height: 220px;
+  }
+
+  .card h3 {
+    font-size: 14px;
+    margin: 10px 10px 4px 10px;
+  }
+
+  .card p {
+    font-size: 12px;
+    margin: 0 10px 10px 10px;
+  }
+
+  .dots {
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dot.active {
+    width: 20px;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 /* Additional page styles */
