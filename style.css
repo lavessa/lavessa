@@ -1,6 +1,7 @@
 /* ===== BODY ===== */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -1544,6 +1545,34 @@ body {
   transform: scale(1.4);
 }
 
+/* ===== FEATURED CAROUSEL ===== */
+.featured-carousel {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.featured-track {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.featured-card {
+  min-width: 85%;
+  scroll-snap-align: center;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  max-height: 450px;
+}
+
+.featured-card a {
+  text-decoration: none;
+  display: block;
+}
+
 /* ===== ABOUT BRAND ===== */
 .about-brand {
   display: flex;
@@ -1707,57 +1736,49 @@ body {
     height: 350px;
   }
 
-  /* Interactive Carousel */
+  /* Featured Carousel */
   .product-carousel-section {
     padding: 40px 20px;
   }
 
-  .carousel-track-container {
+  .featured-carousel {
     overflow-x: auto;
-    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding-left: 5vw; /* Center the first card: (100vw - 90vw) / 2 = 5vw */
+    scroll-behavior: smooth;
+    padding-left: 7.5vw; /* Center first card */
   }
 
-  .carousel-track {
-    width: auto;
-    padding-right: 5vw; /* Ensure last card can center */
+  .featured-track {
+    display: flex;
+    gap: 15px;
+    padding-right: 7.5vw; /* Ensure last card can center */
   }
 
-  .carousel-slide {
-    flex: 0 0 90vw; /* 90% width as requested */
+  .featured-card {
+    min-width: 85vw; /* 85% width allows peeking */
     scroll-snap-align: center;
-    margin-right: 15px; /* Gap between cards */
-    margin: auto; /* Center the card */
-    max-height: 450px; /* Limit height to 450px on mobile */
-    overflow: hidden; /* Prevent overflow */
-    border-radius: 20px; /* Rounded corners */
-  }
-
-  .carousel-slide:last-child {
-    margin-right: 0; /* Remove margin from last card */
-  }
-
-  .carousel-btn {
-    display: none; /* Hide buttons on mobile for swipe navigation */
+    margin: auto;
+    overflow: hidden;
+    border-radius: 20px;
+    max-height: 450px;
   }
 
   .slide-img-wrapper {
     width: 100%;
-    height: auto; /* Allow natural height based on image */
-    border-radius: 20px; /* Match card corners */
+    height: auto;
+    border-radius: 20px;
     box-shadow: 0 10px 30px rgba(96, 50, 117, 0.15);
-    overflow: hidden; /* Ensure image doesn't overflow */
-    background: #fdfafd; /* Light background for letterboxing */
+    overflow: hidden;
+    background: #fdfafd;
   }
 
   .slide-img-wrapper img {
     width: 100%;
-    height: 320px; /* Fixed height for consistent display */
-    object-fit: contain; /* Show full image without cropping */
+    height: 320px;
+    object-fit: contain;
     border-radius: 20px;
-    display: block; /* Remove bottom gap */
+    display: block;
   }
 
   /* About Brand Section */
