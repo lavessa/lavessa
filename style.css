@@ -1576,6 +1576,10 @@ body {
 }
 
 .featured-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -1590,10 +1594,16 @@ body {
 }
 
 .featured-card {
-  min-width: 85%;
-  scroll-snap-align: center;
+  width: 320px;
+  height: 420px;
+  margin: auto;
   border-radius: 20px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  scroll-snap-align: center;
   box-shadow: 0 10px 30px rgba(96, 50, 117, 0.15);
   background: #fdfafd;
   position: relative;
@@ -1608,9 +1618,9 @@ body {
 
 .featured-card img {
   width: 100%;
-  height: 320px;
-  object-fit: contain;
-  border-radius: 20px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 15px;
   display: block;
   margin-bottom: 15px;
 }
@@ -1621,12 +1631,14 @@ body {
   font-weight: 500;
   color: #2e1a38;
   margin-bottom: 8px;
+  text-align: center;
 }
 
 .featured-card p {
   color: #7a7a7a;
   font-size: 16px;
   margin: 0;
+  text-align: center;
 }
 
 .badge {
@@ -1820,6 +1832,10 @@ body {
   }
 
   .featured-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
@@ -1834,10 +1850,16 @@ body {
   }
 
   .featured-card {
-    min-width: 85vw; /* 85% width allows peeking */
-    scroll-snap-align: center;
+    width: 320px;
+    height: 420px;
+    margin: auto;
     border-radius: 20px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    scroll-snap-align: center;
     box-shadow: 0 10px 30px rgba(96, 50, 117, 0.15);
     background: #fdfafd;
   }
@@ -1849,9 +1871,9 @@ body {
 
   .featured-card img {
     width: 100%;
-    height: 280px; /* Slightly smaller on mobile */
-    object-fit: contain;
-    border-radius: 20px;
+    height: 260px; /* consistent image height */
+    object-fit: cover;
+    border-radius: 15px;
     display: block;
     margin-bottom: 12px;
   }
@@ -1859,10 +1881,12 @@ body {
   .featured-card h3 {
     font-size: 16px;
     margin-bottom: 6px;
+    text-align: center;
   }
 
   .featured-card p {
     font-size: 14px;
+    text-align: center;
   }
 
   /* About Brand Section */
