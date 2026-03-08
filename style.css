@@ -2166,6 +2166,156 @@ form input, form textarea {
   min-height: 100vh;
 }
 
+/* ===== TRUST FEATURES SECTION ===== */
+.trust-features {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #faf8fb, #f5f2f7);
+  text-align: center;
+}
+
+.trust-features-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.trust-feature-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(96, 50, 117, 0.08);
+  transition: all 0.4s ease;
+}
+
+.trust-feature-block:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(96, 50, 117, 0.15);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #603275, #9e6bb0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.feature-icon i {
+  font-size: 32px;
+  color: white;
+}
+
+.trust-feature-block:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 20px rgba(96, 50, 117, 0.3);
+}
+
+.trust-feature-block h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2e1a38;
+  margin: 0 0 8px 0;
+}
+
+.trust-feature-block p {
+  font-size: 14px;
+  color: #7a7a7a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== TRUST FEATURES RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .trust-features-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-features {
+    padding: 48px 16px;
+  }
+
+  .trust-features-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .trust-feature-block {
+    padding: 24px 16px;
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 12px;
+  }
+
+  .feature-icon i {
+    font-size: 28px;
+  }
+
+  .trust-feature-block h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .trust-feature-block p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trust-features {
+    padding: 36px 12px;
+  }
+
+  .trust-features-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .trust-feature-block {
+    padding: 20px 14px;
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 10px;
+  }
+
+  .feature-icon i {
+    font-size: 24px;
+  }
+
+  .trust-feature-block h3 {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .trust-feature-block p {
+    font-size: 11px;
+  }
+}
+
+.product-detail-page {
+  padding: 40px 20px;
+  background: white;
+  min-height: 100vh;
+}
+
 .product-detail-container {
   max-width: 1400px;
   margin: 0 auto;
