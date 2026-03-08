@@ -1458,15 +1458,17 @@ body {
   border-radius: 16px;
   background: #fdfafd;
   /* light placeholder back */
-  aspect-ratio: 3 / 4;
+  height: auto; /* Allow natural height */
+  max-height: 300px; /* Reasonable max height for desktop */
   box-shadow: 0 8px 25px rgba(96, 50, 117, 0.1);
 }
 
 .slide-img-wrapper img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto; /* Natural height */
+  object-fit: contain; /* Show full image without cropping */
   transition: transform 0.5s ease;
+  display: block; /* Remove bottom gap */
 }
 
 .carousel-slide:hover img {
@@ -1715,19 +1717,19 @@ body {
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    padding-left: 12.5vw; /* Center the first card: (100vw - 75vw) / 2 = 12.5vw */
+    padding-left: 5vw; /* Center the first card: (100vw - 90vw) / 2 = 5vw */
   }
 
   .carousel-track {
     width: auto;
-    padding-right: 12.5vw; /* Ensure last card can center */
+    padding-right: 5vw; /* Ensure last card can center */
   }
 
   .carousel-slide {
-    flex: 0 0 75vw; /* 75% width allows peeking of next card */
+    flex: 0 0 90vw; /* 90% width as requested */
     scroll-snap-align: center;
     margin-right: 15px; /* Gap between cards */
-    max-height: 65vh; /* Limit height to 65% of viewport height */
+    max-height: 450px; /* Limit height to 450px on mobile */
   }
 
   .carousel-slide:last-child {
@@ -1740,17 +1742,19 @@ body {
 
   .slide-img-wrapper {
     width: 100%;
-    height: 100%;
+    height: auto; /* Allow natural height based on image */
     border-radius: 20px; /* Match card corners */
     box-shadow: 0 10px 30px rgba(96, 50, 117, 0.15);
     overflow: hidden; /* Ensure image doesn't overflow */
+    background: #fdfafd; /* Light background for letterboxing */
   }
 
   .slide-img-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto; /* Natural height */
+    object-fit: contain; /* Show full image without cropping */
     border-radius: 20px;
+    display: block; /* Remove bottom gap */
   }
 
   /* About Brand Section */
