@@ -100,11 +100,17 @@
   <!-- MODAL OVERLAY FOR MENU -->
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay"></div>
+
   <!-- SEARCH PANEL -->
   <div class="search-panel" id="searchPanel">
     <div class="search-header">
-      <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
-      <button class="search-close" id="searchClose">
+      <div class="search-input-wrapper">
+        <i class="fas fa-magnifying-glass search-input-icon"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products...">
+      </div>
+      <button class="search-close" id="searchClose" title="Close search">
         <i class="fa-solid fa-times"></i>
       </button>
     </div>
@@ -542,7 +548,13 @@
       const searchResults = document.getElementById('searchResults');
       
       if (products.length === 0) {
-        searchResults.innerHTML = '<p style="text-align: center; color: #999; padding: 40px 20px; grid-column: 1/-1;">No products found</p>';
+        searchResults.innerHTML = `
+          <div class="search-no-results">
+            <i class="fas fa-search"></i>
+            <h3>No products found</h3>
+            <p>Try searching with different keywords</p>
+          </div>
+        `;
         return;
       }
 
@@ -563,8 +575,9 @@
     // Search Panel Toggle
     function openSearch() {
       searchPanel.classList.add('active');
-      modalOverlay.classList.add('active');
+      document.getElementById('searchOverlay').classList.add('active');
       searchInput.focus();
+      document.body.style.overflow = 'hidden';
       
       // Load default products on open
       setTimeout(() => {
@@ -576,13 +589,17 @@
 
     function closeSearch() {
       searchPanel.classList.remove('active');
-      modalOverlay.classList.remove('active');
+      document.getElementById('searchOverlay').classList.remove('active');
       searchInput.value = '';
+      document.body.style.overflow = '';
       renderSearchResults(allProducts);
     }
 
     searchToggle.addEventListener('click', openSearch);
     searchClose.addEventListener('click', closeSearch);
+
+    // Close search when clicking on overlay
+    document.getElementById('searchOverlay').addEventListener('click', closeSearch);
 
     // Search input listener with live filtering
     searchInput.addEventListener('input', (e) => {
@@ -601,6 +618,13 @@
       }
       
       document.getElementById('searchResults').classList.add('grid');
+    });
+
+    // Keyboard shortcut to close search (ESC key)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchPanel.classList.contains('active')) {
+        closeSearch();
+      }
     });
 
       // Close modals when clicking overlay (excluding close buttons)
